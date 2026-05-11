@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guías Turísticas UCA · Universidad de Cádiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --uca-blue:    #003087;
+      --uca-mid:     #0055b3;
+      --uca-light:   #e8f0fb;
+      --uca-gold:    #f0b323;
+      --text:        #1a1a2e;
+      --muted:       #5a6072;
+      --border:      #d0d9ea;
+      --white:       #ffffff;
+      --radius:      12px;
+      --shadow:      0 4px 24px rgba(0,48,135,.10);
+    }
+
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: #f5f7fc; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--uca-blue);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-escudo {
+      width: 42px; height: 42px;
+      background: var(--white);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 13px; color: var(--uca-blue);
+      letter-spacing: -.5px;
+    }
+    .logo-text { color: var(--white); }
+    .logo-text strong { display: block; font-size: 15px; font-weight: 700; line-height: 1.1; }
+    .logo-text span   { font-size: 11px; font-weight: 300; opacity: .8; }
+    nav a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      margin-left: 28px;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--uca-gold); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--uca-blue) 0%, var(--uca-mid) 100%);
+      color: var(--white);
+      padding: 80px 5vw 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,.07)'/%3E%3C/svg%3E") repeat;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--uca-gold);
+      color: var(--uca-blue);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 18px; position: relative; }
+    .hero p  { font-size: 1.15rem; opacity: .88; max-width: 560px; margin: 0 auto 36px; line-height: 1.65; position: relative; }
+    .hero-cta {
+      display: inline-block;
+      background: var(--uca-gold);
+      color: var(--uca-blue);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 34px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(240,179,35,.4); }
+
+    /* ── FEATURES ── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: -50px auto 0;
+      padding: 0 5vw;
+      position: relative; z-index: 10;
+    }
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--uca-blue); }
+    .feature-card p  { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      max-width: 780px;
+      margin: 60px auto 80px;
+      padding: 0 5vw;
+    }
+    .form-header { text-align: center; margin-bottom: 40px; }
+    .form-header h2 { font-size: 1.9rem; font-weight: 700; color: var(--uca-blue); margin-bottom: 10px; }
+    .form-header p  { color: var(--muted); font-size: 15px; }
+
+    .form-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 44px 48px;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 600px) { .form-card { padding: 28px 20px; } }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+    .full { grid-column: 1 / -1; }
+
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--uca-blue);
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+    .field input, .field select, .field textarea {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-family: inherit;
+      font-size: 14.5px;
+      color: var(--text);
+      background: #fafbfd;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--uca-mid);
+      box-shadow: 0 0 0 3px rgba(0,85,179,.12);
+      background: var(--white);
+    }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    /* Checkboxes intereses */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--uca-light);
+      border: 1.5px solid transparent;
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      font-size: 13.5px;
+      font-weight: 500;
+      user-select: none;
+    }
+    .check-item input[type=checkbox] { display: none; }
+    .check-item .dot {
+      width: 16px; height: 16px;
+      border: 2px solid var(--uca-mid);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .check-item input:checked ~ .dot {
+      background: var(--uca-blue);
+      border-color: var(--uca-blue);
+    }
+    .check-item input:checked ~ .dot::after {
+      content: '✓';
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .check-item:has(input:checked) {
+      border-color: var(--uca-mid);
+      background: #dce8f8;
+    }
+
+    /* Slider ritmo */
+    .slider-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .slider-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+    input[type=range] {
+      width: 100%; accent-color: var(--uca-blue);
+      height: 6px; border-radius: 4px;
+    }
+
+    /* Divider */
+    .form-divider {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 28px 0;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: 16px;
+    }
+
+    /* Submit */
+    .btn-submit {
+      width: 100%;
+      background: var(--uca-blue);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 15px 0;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      margin-top: 8px;
+      letter-spacing: .3px;
+    }
+    .btn-submit:hover { background: var(--uca-mid); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,48,135,.25); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* ── SUCCESS STATE ── */
+    #success-msg {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+      animation: fadeIn .5s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
+    #success-msg .check-circle {
+      width: 72px; height: 72px;
+      background: #e6f4ea;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+    }
+    #success-msg h3 { font-size: 1.5rem; color: var(--uca-blue); margin-bottom: 10px; }
+    #success-msg p  { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+    /* ── ERROR ── */
+    .field-error { font-size: 12px; color: #c0392b; margin-top: 3px; display: none; }
+    .field.has-error input, .field.has-error select { border-color: #e74c3c; }
+    .field.has-error .field-error { display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--uca-blue);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 24px 5vw;
+      font-size: 13px;
+    }
+    footer strong { color: var(--white); }
+    footer a { color: var(--uca-gold); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo-wrap" href="#">
+    <div class="logo-escudo">UCA</div>
+    <div class="logo-text">
+      <strong>Universidad de Cádiz</strong>
+      <span>Guías Turísticas</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#formulario">Crear mi guía</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✦ Servicio gratuito UCA</div>
+  <h1>Tu guía turística<br>personalizada en minutos</h1>
+  <p>Cuéntanos tu viaje y recibirás una guía completa generada por inteligencia artificial: itinerario día a día, gastronomía, alojamiento y consejos prácticos.</p>
+  <a href="#formulario" class="hero-cta">Crear mi guía gratuita →</a>
+</section>
+
+<!-- FEATURES -->
+<div class="features" id="como-funciona">
+  <div class="feature-card">
+    <div class="feature-icon">📝</div>
+    <h3>Rellena el formulario</h3>
+    <p>Cuéntanos tu destino, fechas, presupuesto e intereses. Solo 2 minutos.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🤖</div>
+    <h3>IA genera tu guía</h3>
+    <p>Nuestra inteligencia artificial crea un itinerario único adaptado a ti.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📱</div>
+    <h3>Recíbela al instante</h3>
+    <p>Te enviamos por email una guía interactiva que funciona en móvil y PC.</p>
+  </div>
+</div>
+
+<!-- FORM -->
+<section class="form-section" id="formulario">
+  <div class="form-header">
+    <h2>Crea tu guía de viaje</h2>
+    <p>Completa los datos y recibirás tu guía personalizada en tu correo.</p>
+  </div>
+
+  <div class="form-card">
+    <form id="travel-form" novalidate>
+
+      <p class="section-title">Datos personales</p>
+      <div class="form-grid">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+          <span class="field-error">Este campo es obligatorio.</span>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required />
+          <span class="field-error">Introduce un email válido.</span>
+        </div>
+      </div>
+
+      <hr class="form-divider" />
+      <p class="section-title">Tu viaje</p>
+      <div class="form-grid">
+        <div class="field">
+          <label for="destino">Destino</label>
+          <input type="text" id="destino" name="destino" placeholder="Ciudad o país" required />
+          <span class="field-error">Indica el destino.</span>
+        </div>
+        <div class="field">
+          <label for="viajeros">Número de viajeros</label>
+          <select id="viajeros" name="viajeros">
+            <option value="1">1 — Solo/a</option>
+            <option value="2" selected>2 — Pareja</option>
+            <option value="3-4">3 o 4 — Grupo pequeño</option>
+            <option value="5+">5 o más — Grupo grande</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="llegada">Fecha de llegada</label>
+          <input type="date" id="llegada" name="llegada" required />
+          <span class="field-error">Selecciona la fecha de llegada.</span>
+        </div>
+        <div class="field">
+          <label for="salida">Fecha de salida</label>
+          <input type="date" id="salida" name="salida" required />
+          <span class="field-error">Selecciona la fecha de salida.</span>
+        </div>
+        <div class="field">
+          <label for="presupuesto">Presupuesto diario por persona</label>
+          <select id="presupuesto" name="presupuesto">
+            <option value="bajo">Bajo · menos de 50 €/día</option>
+            <option value="medio" selected>Medio · 50–150 €/día</option>
+            <option value="alto">Alto · más de 150 €/día</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="alojamiento">Tipo de alojamiento</label>
+          <select id="alojamiento" name="alojamiento">
+            <option value="hostel">Hostel / albergue</option>
+            <option value="hotel" selected>Hotel</option>
+            <option value="apartamento">Apartamento turístico</option>
+            <option value="resort">Resort / lujo</option>
+            <option value="sin-preferencia">Sin preferencia</option>
+          </select>
+        </div>
+      </div>
+
+      <hr class="form-divider" />
+      <p class="section-title">Intereses</p>
+      <div class="check-grid">
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="cultura" checked />
+          <span class="dot"></span> 🏛️ Cultura
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="gastronomia" checked />
+          <span class="dot"></span> 🍽️ Gastronomía
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="naturaleza" />
+          <span class="dot"></span> 🌿 Naturaleza
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="aventura" />
+          <span class="dot"></span> 🧗 Aventura
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="ocio" />
+          <span class="dot"></span> 🎉 Ocio nocturno
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="familia" />
+          <span class="dot"></span> 👨‍👩‍👧 Familia
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="compras" />
+          <span class="dot"></span> 🛍️ Compras
+        </label>
+        <label class="check-item">
+          <input type="checkbox" name="intereses" value="relax" />
+          <span class="dot"></span> 🧘 Relax
+        </label>
+      </div>
+
+      <hr class="form-divider" />
+      <p class="section-title">Ritmo del viaje</p>
+      <div class="field full slider-wrap">
+        <div class="slider-labels">
+          <span>🐢 Tranquilo</span>
+          <span>⚡ Intenso</span>
+        </div>
+        <input type="range" id="ritmo" name="ritmo" min="1" max="5" value="3" />
+      </div>
+
+      <hr class="form-divider" />
+      <div class="field full">
+        <label for="notas">¿Algo más que debamos saber? <span style="font-weight:400;color:var(--muted)">(opcional)</span></label>
+        <textarea id="notas" name="notas" placeholder="Alergias alimentarias, movilidad reducida, preferencias especiales…"></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submit-btn">
+        Generar mi guía gratuita ✦
+      </button>
+    </form>
+
+    <!-- SUCCESS -->
+    <div id="success-msg">
+      <div class="check-circle">✅</div>
+      <h3>¡Tu guía está en camino!</h3>
+      <p>En unos minutos recibirás en <strong id="confirm-email"></strong> tu guía personalizada de <strong id="confirm-destino"></strong>.<br><br>
+      Revisa también la carpeta de spam si no la ves pronto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Universidad de Cádiz</strong> · Servicio de Guías Turísticas ·
+  <a href="https://www.uca.es" target="_blank">uca.es</a></p>
+  <p style="margin-top:6px;font-size:12px;">© 2026 UCA · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  // ── CONFIG ──────────────────────────────────────────────────
+  const MAKE_WEBHOOK_URL = 'TU_WEBHOOK_URL_DE_MAKE_AQUI';
+  // ────────────────────────────────────────────────────────────
+
+  const form    = document.getElementById('travel-form');
+  const success = document.getElementById('success-msg');
+  const btn     = document.getElementById('submit-btn');
+
+  // Fechas mínimas = hoy
+  const hoy = new Date().toISOString().split('T')[0];
+  document.getElementById('llegada').min = hoy;
+  document.getElementById('salida').min  = hoy;
+
+  document.getElementById('llegada').addEventListener('change', function () {
+    document.getElementById('salida').min = this.value;
+  });
+
+  function validate() {
+    let ok = true;
+    ['nombre', 'email', 'destino', 'llegada', 'salida'].forEach(id => {
+      const field = document.getElementById(id);
+      const wrap  = field.closest('.field');
+      const valid = id === 'email'
+        ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim())
+        : field.value.trim() !== '';
+      wrap.classList.toggle('has-error', !valid);
+      if (!valid) ok = false;
+    });
+    if (document.getElementById('salida').value <= document.getElementById('llegada').value) {
+      document.getElementById('salida').closest('.field').classList.add('has-error');
+      document.querySelector('#salida ~ .field-error').textContent = 'La salida debe ser posterior a la llegada.';
+      ok = false;
+    }
+    return ok;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    const intereses = [...document.querySelectorAll('input[name=intereses]:checked')]
+      .map(cb => cb.value).join(', ');
+
+    const llegada = document.getElementById('llegada').value;
+    const salida  = document.getElementById('salida').value;
+    const dias    = Math.round((new Date(salida) - new Date(llegada)) / 86400000);
+
+    const payload = {
+      nombre:       document.getElementById('nombre').value.trim(),
+      email:        document.getElementById('email').value.trim(),
+      destino:      document.getElementById('destino').value.trim(),
+      viajeros:     document.getElementById('viajeros').value,
+      llegada,
+      salida,
+      dias,
+      presupuesto:  document.getElementById('presupuesto').value,
+      alojamiento:  document.getElementById('alojamiento').value,
+      intereses:    intereses || 'sin preferencia',
+      ritmo:        document.getElementById('ritmo').value,
+      notas:        document.getElementById('notas').value.trim()
+    };
+
+    btn.disabled    = true;
+    btn.textContent = '⏳ Generando tu guía…';
+
+    try {
+      await fetch(MAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (_) { /* Make responde vacío, fetch puede fallar CORS — el webhook ya recibió los datos */ }
+
+    // Mostrar confirmación siempre que el webhook esté configurado
+    document.getElementById('confirm-email').textContent   = payload.email;
+    document.getElementById('confirm-destino').textContent = payload.destino;
+    form.style.display    = 'none';
+    success.style.display = 'block';
+  });
+</script>
+</body>
+</html>
